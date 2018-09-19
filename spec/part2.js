@@ -58,7 +58,7 @@
       it('should return false given an array and a value not in that array', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        expect(_.contains([1,2,3,4],5)).to.equal(false);
       });
 
       it('should return true given a object and a value from that object', function() {
@@ -91,7 +91,7 @@
       it('fails for a collection of all-falsy values', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        expect(_.every([false, 0], _.identity)).to.be.false;
       });
 
       it('fails for a collection containing mixed falsy and truthy values', function() {
@@ -149,7 +149,7 @@
       it('should fail for a set containing no matching values', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        expect(_.some([1,1,1], isEven)).to.be.false;
       });
 
       it('should pass for a collection containing one matching value', function() {
@@ -189,7 +189,11 @@
       it('should override properties found on the destination', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        var destination = {a:'a', b: 'b'};
+        var source = { a: 'b', b : 'a' };
+        var extended = _.extend(destination, source);
+
+        expect(extended.a).to.equal('b');
       });
 
       it('should not override properties not found in the source', function() {
@@ -267,7 +271,11 @@
       it('should copy any property whose key is not already set on the target', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        var destination = {a:'a', b: 'b'};
+        var source = { a: 'b', b : 'a', c: 'c', d: 'd' };
+        var extended = _.defaults(destination, source);
+
+        expect(extended.c).to.equal('c');
       });
 
       it('should not copy a property if that key is already set on the target', function() {
@@ -396,6 +404,7 @@
       });
 
       it('should give different results for different arguments', function() {
+        //debugger;
         expect(memoAdd(1, 2)).to.equal(3);
         expect(memoAdd(3, 4)).to.equal(7);
         expect(memoAdd(1, 3)).to.equal(4);
@@ -407,7 +416,7 @@
         // e.g. whether or not the function has been called.
         var spy = sinon.spy(function() { return 'Dummy output'; });
         var memoSpy = _.memoize(spy);
-
+        //debugger;
         memoSpy(10);
         expect(spy).to.have.been.calledOnce;
         memoSpy(10);
@@ -429,6 +438,8 @@
         // Be careful how you are checking if a set of arguments has been passed in already
         var spy = sinon.spy(function() { return 'Dummy output'; });
         var memoSpy = _.memoize(spy);
+
+        //debugger;
 
         memoSpy([1, 2, 3]);
         expect(spy).to.have.been.calledOnce;
